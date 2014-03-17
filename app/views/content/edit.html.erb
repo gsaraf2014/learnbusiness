@@ -1,0 +1,52 @@
+<div class="page-header">
+  <h1>Edit content <%= @content.name %></h1>
+</div>
+
+<form action="/content/<%= @content.id %>/update">
+  
+  <div class="form-group">
+    <label>Enter a content Name:</label>
+    <!-- <textarea value=<%= @content.name %> name="name" type="text" class="form-control input-md" rows="1"><%=@content.name%></textarea> -->
+     <textarea name="name" type="text" class="form-control input-md" rows="1"><%=@content.name%></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label>Enter a content Decription:</label>
+    <!-- <textarea value=<%= @content.desc %> name="desc" type="text" class="form-control input-md" rows="5"><%=@content.desc%></textarea> -->
+    <textarea name="desc" type="text" class="form-control input-md" rows="5"><%=@content.desc%></textarea>
+  </div>
+  
+  <div class="form-group">
+    <label>Link to Photo:</label>
+    <input value=<%= @content.image_url %> name="image_url" type="text" class="form-control input-md" placeholder="<%= @content.image_url %>/">
+  </div>
+  
+  <div class="form-group">
+    <label>Link to URL [optional]</label>
+    <input name="article_url" type="text" class="form-control input-md" placeholder= "<%= @content.source_url %>/">
+  </div>
+
+  <div class="form-group">
+    <label>Enter the Content Type:</label>
+       <select name="content_type">
+            <option value="1">Book</option>
+            <option value="2">Article</option>
+            <option value="3">Framework</option>
+      </select>
+  </div>
+
+  <div class="form-group">
+    <label> And in what Category?</label>
+       <select name="tag">
+         <% Tag.where(:level => 1).each do |t| %> 
+            <option value=<%= t.id %>> <%= t.name %></option>
+         <% end %>
+       </select>
+  </div>
+
+    <button type="submit" class="btn btn-success btn-md">Submit</button>
+    or
+    <a href="/content">Cancel</a>
+    or 
+    <a href="/content/<%= @content.id %>/delete">DELETE THIS</a>
+</form>

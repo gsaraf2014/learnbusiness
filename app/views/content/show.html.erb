@@ -1,0 +1,27 @@
+
+<div class="page-header">
+  <%= link_to "Edit", "/content/#{@content.id}/edit", :class => "btn btn-md btn-success pull-right" %>
+  <h1><%= @content.name %> Details</h1>
+</div>
+
+<div class="row">
+  <div class="col-md-4">
+    <img class="col-md-12" src="<%=@content.image_url%>">
+  </div>
+  <div class="col-md-8">
+    <h3><%= @content.name %></h3>
+    
+    <%if @content.tags %>
+     <h4>Tags: <%=@content.tags.first.name %> </h4>
+    <%end%>
+<br>
+    <%if @content.source_url %>
+      <h4>Source URL: <a href=<%=@content.source_url%> target="_blank"> Click Here </a> </h4>
+    <%end%>
+
+    <h3>Description: </h3>
+        <p><%= @content.desc %></p>
+
+  </div>
+</div>
+

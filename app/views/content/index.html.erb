@@ -1,0 +1,65 @@
+
+<p>
+  The time is now: <%= Time.now %>
+</p>
+
+<ul class="nav nav-tabs">
+  
+<%if params[:type].to_i == 1 or !params[:type].present? %> 
+  <li class="active"><a href="/content?tag=<%=@section%>&type=1"> <i class="fa fa-book"> </i> Books </a></li>
+  <li><a href="/content?tag=<%=@section%>&type=2">Artciles & Blogs</a></li>
+  <li><a href="/content?tag=<%=@section%>&type=3"><i class="fa fa-th"> Frameworks </i></a></li>
+  <li><a href="/content?tag=<%=@section%>&type=4">Discussion</a></li>
+<%end%>
+
+<%if params[:type].to_i == 2 %> 
+  <li ><a href="/content?tag=<%=@section%>&type=1"> <i class="fa fa-book"> </i> Books </a></li>
+  <li class="active"><a href="/content?tag=<%=@section%>&type=2">Artciles & Blogs</a></li>
+  <li><a href="/content?tag=<%=@section%>&type=3"><i class="fa fa-th"> Frameworks </i></a></li>
+  <li><a href="/content?tag=<%=@section%>&type=4">Discussion</a></li>
+<%end%>
+
+<%if params[:type].to_i == 3 %> 
+  <li ><a href="/content?tag=<%=@section%>&type=1"> <i class="fa fa-book"> </i> Books </a></li>
+  <li><a href="/content?tag=<%=@section%>&type=2">Artciles & Blogs</a></li>
+  <li class="active"><a href="/content?tag=<%=@section%>&type=3"><i class="fa fa-th"> Frameworks</i></a></li>
+  <li><a href="/content?tag=<%=@section%>&type=4">Discussion</a></li>
+<%end%>
+
+<%if params[:type].to_i == 4 %> 
+  <li><a href="/content?tag=<%=@section%>&type=1"> <i class="fa fa-book"> </i> Books </a></li>
+  <li><a href="/content?tag=<%=@section%>&type=2">Artciles & Blogs</a></li>
+  <li><a href="/content?tag=<%=@section%>&type=3"><i class="fa fa-th"> Frameworks</i></a></li>
+  <li class="active"><a href="/content?tag=<%=@section%>&type=4">Discussion</a></li>
+<%end%>
+
+
+
+</ul>	
+
+<h1><%= @section %> List</h1>
+
+	<%if @content_list.count > 0%>
+
+			<% @content_list.each do |content| %>
+			 <br>
+			<div class="row">
+				
+				<div class="col-md-4">
+				 	
+				<a href="/content/<%= content.id %>/show"><img width="200" src="<%=content.image_url %>"> </a>
+
+				</div>
+
+				<div class="col-md-8">
+					<h3> <a href="/content/<%=content.id%>/show"><%=content.name%></a></h3>		
+					<p><%=content.desc%></p>
+				</div>
+			 </div>
+			 <%end%>
+	<%else%>
+		<br>
+		<h4> Sorry ... I got nothing here so far ....Why dont you add something? </h4>
+		<h4> <a href = "/content/new"> <i> ADD CONTENT </i></a></h4> 
+
+	<%end%>
